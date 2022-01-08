@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
     var showName = false
     var showSeconds = true
     var zeroPad = true
+    var showTime = true
 
     var formatter = NumberFormatter()
 
@@ -58,6 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
     @IBOutlet weak var showNameMI: NSMenuItem!
     @IBOutlet weak var showSecMI: NSMenuItem!
     @IBOutlet weak var zeroPadMI: NSMenuItem!
+    @IBOutlet weak var showTimeMI: NSMenuItem!
     
     func updatePreferences() {
         let defaults = UserDefaults.standard
@@ -69,6 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
         showSeconds = defaults.value(forKey: "showsec") as? Bool ?? true
         showName = defaults.value(forKey: "showname") as? Bool ?? false
         zeroPad = defaults.value(forKey: "zeropad") as? Bool ?? true
+        showTime = defaults.value(forKey: "shwotime") as? Bool ?? false
         
         if (showSeconds) {
             showSecMI.state = .on
@@ -89,6 +92,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
         }
         else {
             zeroPadMI.state = .off
+        }
+        
+        if (showTime) {
+            showTimeMI.state = .on
+        }
+        else {
+            showTimeMI.state = .off
         }
     }
 
@@ -119,10 +129,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
     // Display seconds as Days, Hours, Minutes, Seconds.
     func formatTime(_ seconds: Int) -> (String) {
         let time = secondsToTime(abs(seconds))
-        let daysStr    = (time.0 != 0) ? String(time.0) + " - " : ""
-        let hoursStr   = (time.1 != 0 || time.0 != 0)               ? formatter.string(from: NSNumber(value: time.1))! + ":" : ""
-        let minutesStr = (time.2 != 0 || time.1 != 0 || time.0 != 0) ? formatter.string(from: NSNumber(value: time.2))! : ""
-        let secondsStr = (showSeconds) ? ":" + formatter.string(from: NSNumber(value: time.3))! : ""
+        var daysStr    = (time.0 != 0) ? String(time.0) : ""
+        var hoursStr = ""
+        var minutesStr = ""
+        var secondsStr = ""
+        if (showTime) {
+            daysStr    += (time.0 != 0) ? " - " : ""
+            hoursStr   = (time.1 != 0 || time.0 != 0)               ? formatter.string(from: NSNumber(value: time.1))! + ":" : ""
+            minutesStr = (time.2 != 0 || time.1 != 0 || time.0 != 0) ? formatter.string(from: NSNumber(value: time.2))! : ""
+            secondsStr = (showSeconds) ? ":" + formatter.string(from: NSNumber(value: time.3))! : ""
+        }
         let suffixStr  = (seconds < 0) ? " ago" : "" // TODO: i18n?
         return daysStr + hoursStr + minutesStr + secondsStr + suffixStr
     }
@@ -167,6 +183,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
         defaults.set(zeroPad, forKey: "zeropad")
     }
 
+    @IBAction func toggleShowTime(_ sender: NSMenuItem) {
+        let defaults = UserDefaults.standard
+        if (showTime) {
+            showTime = false
+            sender.state = .off
+        } else {
+            showTime = true
+            sender.state = .on
+        }
+        defaults.set(showName, forKey: "showname")
+    }
+    
     // MenuItem click event to open preferences popover
     @IBAction func configurePreferences(_ sender: Any) {
         preferencesWindow.showWindow(nil)

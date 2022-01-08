@@ -16,6 +16,7 @@
                 <outlet property="menuBarItem" destination="Bb0-bb-uo1" id="cuU-OF-EKX"/>
                 <outlet property="showNameMI" destination="ymR-mC-yG2" id="VQh-IT-4lH"/>
                 <outlet property="showSecMI" destination="ccT-bc-F58" id="Zig-cN-qeZ"/>
+                <outlet property="showTimeMI" destination="ocs-ql-X0j" id="Mvg-qx-hLM"/>
                 <outlet property="statusMenu" destination="Bb0-bb-uo1" id="gYg-3Q-Umb"/>
                 <outlet property="zeroPadMI" destination="euL-WY-OeU" id="TxV-UI-lcK"/>
             </connections>
@@ -29,12 +30,6 @@
                         <action selector="toggleShowNameWithSender:" target="Voe-Tx-rLC" id="eZS-dp-hK7"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Show Seconds" state="on" id="ccT-bc-F58">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="toggleShowSecondsWithSender:" target="Voe-Tx-rLC" id="mUa-3b-0vF"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Leading Zeros" state="on" id="euL-WY-OeU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -42,6 +37,19 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="W0a-71-nza"/>
+                <menuItem title="Show Time" state="on" id="ocs-ql-X0j">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleShowTime:" target="Voe-Tx-rLC" id="3fj-zG-2Tb"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Show Seconds" state="on" id="ccT-bc-F58">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleShowSecondsWithSender:" target="Voe-Tx-rLC" id="mUa-3b-0vF"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="PAn-tr-ySt"/>
                 <menuItem title="Preferences" id="gEw-R4-QZI">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
