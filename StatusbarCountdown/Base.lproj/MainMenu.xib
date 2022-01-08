@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,13 +13,17 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="StatusbarCountdown" customModuleProvider="target">
             <connections>
+                <outlet property="menuBarItem" destination="Bb0-bb-uo1" id="cuU-OF-EKX"/>
+                <outlet property="showNameMI" destination="ymR-mC-yG2" id="VQh-IT-4lH"/>
+                <outlet property="showSecMI" destination="ccT-bc-F58" id="Zig-cN-qeZ"/>
                 <outlet property="statusMenu" destination="Bb0-bb-uo1" id="gYg-3Q-Umb"/>
+                <outlet property="zeroPadMI" destination="euL-WY-OeU" id="TxV-UI-lcK"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="Bb0-bb-uo1">
             <items>
-                <menuItem title="Show Name" state="on" id="ymR-mC-yG2">
+                <menuItem title="Show Name" id="ymR-mC-yG2">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleShowNameWithSender:" target="Voe-Tx-rLC" id="eZS-dp-hK7"/>
@@ -32,7 +35,7 @@
                         <action selector="toggleShowSecondsWithSender:" target="Voe-Tx-rLC" id="mUa-3b-0vF"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Leading Zeros" id="euL-WY-OeU">
+                <menuItem title="Leading Zeros" state="on" id="euL-WY-OeU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleZeroPadWithSender:" target="Voe-Tx-rLC" id="Ipf-z6-8Z2"/>
@@ -53,7 +56,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-487.5" y="38.5"/>
+            <point key="canvasLocation" x="-488" y="38.5"/>
         </menu>
     </objects>
 </document>

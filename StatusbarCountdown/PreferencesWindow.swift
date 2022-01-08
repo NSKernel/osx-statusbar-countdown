@@ -18,12 +18,15 @@ class PreferencesWindow: NSWindowController, NSWindowDelegate {
     var delegate: PreferencesWindowDelegate?
     
     override func windowDidLoad() {
+        let defaults = UserDefaults.standard
+        
         super.windowDidLoad()
 
         self.window?.center() // Center the popover
         self.window?.makeKeyAndOrderFront(nil) // Make popover appear on top of anything else
         
-        datePicker.dateValue = Date()
+        nameTextField.stringValue = defaults.string(forKey: "name") ?? ""
+        datePicker.dateValue = (defaults.value(forKey: "date") as? NSDate ?? (Date() as NSDate)) as Date
 
         NSApp.activate(ignoringOtherApps: true) // Activate popover
         

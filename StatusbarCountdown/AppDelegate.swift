@@ -22,9 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
     var countToDate = NSDate(timeIntervalSince1970: 1597249800)
     var countdownName = "Countdown Name"
 
-    var showName = true
+    var showName = false
     var showSeconds = true
-    var zeroPad = false
+    var zeroPad = true
 
     var formatter = NumberFormatter()
 
@@ -32,15 +32,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     var preferencesWindow: PreferencesWindow!
 
+    @IBOutlet weak var menuBarItem: NSMenu!
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         preferencesWindow = PreferencesWindow()
         preferencesWindow.delegate = self
         
-        statusItem.title = ""
+        statusItem.button!.title = ""
         statusItem.menu = statusMenu
         formatter.minimumIntegerDigits = zeroPad ? 2 : 1
 
-        Timer.scheduledTimer(timeInterval: 0.33, // 33ms ~ 30fps
+        Timer.scheduledTimer(timeInterval: 0.42, // 42ms ~ 24fps
                              target: self,
                              selector: #selector(tick),
                              userInfo: nil,
@@ -53,20 +55,49 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
         updatePreferences()
     }
     
+    @IBOutlet weak var showNameMI: NSMenuItem!
+    @IBOutlet weak var showSecMI: NSMenuItem!
+    @IBOutlet weak var zeroPadMI: NSMenuItem!
+    
     func updatePreferences() {
         let defaults = UserDefaults.standard
         
         // Gets the saved values in user defaults
         countdownName = defaults.string(forKey: "name") ?? DEFAULT_NAME
         countToDate = defaults.value(forKey: "date") as? NSDate ?? DEFAULT_DATE
+        
+        showSeconds = defaults.value(forKey: "showsec") as? Bool ?? true
+        showName = defaults.value(forKey: "showname") as? Bool ?? false
+        zeroPad = defaults.value(forKey: "zeropad") as? Bool ?? true
+        
+        if (showSeconds) {
+            showSecMI.state = .on
+        }
+        else {
+            showSecMI.state = .off
+        }
+        
+        if (showName) {
+            showNameMI.state = .on
+        }
+        else {
+            showNameMI.state = .off
+        }
+        
+        if (zeroPad) {
+            zeroPadMI.state = .on
+        }
+        else {
+            zeroPadMI.state = .off
+        }
     }
 
     // Calculates the difference in time from now to the specified date and sets the statusItem title
     @objc func tick() {
         let diffSeconds = Int(countToDate.timeIntervalSinceNow)
         
-        statusItem.title = (showName) ? countdownName + ": " : ""
-        statusItem.title! += formatTime(diffSeconds)
+        statusItem.button!.title = (showName) ? countdownName + ": " : ""
+        statusItem.button!.title += formatTime(diffSeconds)
     
     }
     
@@ -88,16 +119,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
     // Display seconds as Days, Hours, Minutes, Seconds.
     func formatTime(_ seconds: Int) -> (String) {
         let time = secondsToTime(abs(seconds))
-        let daysStr    = (time.0 != 0) ? String(time.0) + "d " : ""
-        let hoursStr   = (time.1 != 0 || time.0 != 0)               ? formatter.string(from: NSNumber(value: time.1))! + "h " : ""
-        let minutesStr = (time.2 != 0 || time.1 != 0 || time.0 != 0) ? formatter.string(from: NSNumber(value: time.2))! + "m" : ""
-        let secondsStr = (showSeconds) ? " " + formatter.string(from: NSNumber(value: time.3))! + "s" : ""
+        let daysStr    = (time.0 != 0) ? String(time.0) + " - " : ""
+        let hoursStr   = (time.1 != 0 || time.0 != 0)               ? formatter.string(from: NSNumber(value: time.1))! + ":" : ""
+        let minutesStr = (time.2 != 0 || time.1 != 0 || time.0 != 0) ? formatter.string(from: NSNumber(value: time.2))! : ""
+        let secondsStr = (showSeconds) ? ":" + formatter.string(from: NSNumber(value: time.3))! : ""
         let suffixStr  = (seconds < 0) ? " ago" : "" // TODO: i18n?
         return daysStr + hoursStr + minutesStr + secondsStr + suffixStr
     }
 
     // MenuItem click event to toggle showSeconds
     @IBAction func toggleShowSeconds(sender: NSMenuItem) {
+        let defaults = UserDefaults.standard
         if (showSeconds) {
             showSeconds = false
             sender.state = .off
@@ -105,10 +137,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
             showSeconds = true
             sender.state = .on
         }
+        defaults.set(showSeconds, forKey: "showsec")
     }
 
     // MenuItem click event to toggle showName
     @IBAction func toggleShowName(sender: NSMenuItem) {
+        let defaults = UserDefaults.standard
         if (showName) {
             showName = false
             sender.state = .off
@@ -116,10 +150,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
             showName = true
             sender.state = .on
         }
+        defaults.set(showName, forKey: "showname")
     }
 
     // MenuItem click event to toggle zeroPad
     @IBAction func toggleZeroPad(sender: NSMenuItem) {
+        let defaults = UserDefaults.standard
         if (zeroPad) {
             zeroPad = false
             sender.state = .off
@@ -128,6 +164,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, PreferencesWindowDelegate {
             sender.state = .on
         }
         formatter.minimumIntegerDigits = zeroPad ? 2 : 1
+        defaults.set(zeroPad, forKey: "zeropad")
     }
 
     // MenuItem click event to open preferences popover

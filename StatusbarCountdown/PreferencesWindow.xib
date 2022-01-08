@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
         <window title="Countdown Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <rect key="contentRect" x="448" y="290" width="316" height="317"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="316" height="317"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -42,22 +41,22 @@
                         </textFieldCell>
                     </textField>
                     <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i6y-9H-c1y">
-                        <rect key="frame" x="20" y="80" width="277" height="148"/>
-                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="hqG-Gn-PyA">
+                        <rect key="frame" x="20" y="152" width="276" height="21"/>
+                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="hqG-Gn-PyA">
                             <font key="font" metaFont="system"/>
                             <date key="date" timeIntervalSinceReferenceDate="597684600">
                                 <!--2019-12-10 15:30:00 +0000-->
                             </date>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES"/>
+                            <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES" second="YES"/>
                         </datePickerCell>
                         <connections>
                             <action selector="changeDatePicker:" target="-2" id="mQF-Mz-mZu"/>
                         </connections>
                     </datePicker>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eaD-Mq-lz1">
-                        <rect key="frame" x="173" y="13" width="129" height="32"/>
+                        <rect key="frame" x="180" y="13" width="123" height="32"/>
                         <buttonCell key="cell" type="push" title="Save and Start" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="EtY-95-7pN">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -70,7 +69,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0T5-t9-NG3">
-                        <rect key="frame" x="93" y="13" width="82" height="32"/>
+                        <rect key="frame" x="108" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RlS-FA-ZXa">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -90,14 +89,6 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Etm-xQ-u1i">
-                        <rect key="frame" x="18" y="61" width="280" height="16"/>
-                        <textFieldCell key="cell" alignment="center" title="Countdown date must be in the future" id="BFa-n9-H7I">
-                            <font key="font" metaFont="systemBold"/>
-                            <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ptr-yV-u4V">
                         <rect key="frame" x="177" y="218" width="125" height="28"/>
                         <constraints>
@@ -109,27 +100,35 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Etm-xQ-u1i">
+                        <rect key="frame" x="18" y="131" width="280" height="16"/>
+                        <textFieldCell key="cell" alignment="center" title="Countdown date must be in the future" id="BFa-n9-H7I">
+                            <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="0T5-t9-NG3" secondAttribute="bottom" constant="20" id="2h3-Km-sGA"/>
                     <constraint firstAttribute="trailing" secondItem="Phx-Zc-hwE" secondAttribute="trailing" constant="20" id="57M-s3-6y9"/>
                     <constraint firstItem="hBP-td-DB9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="7OL-S1-Gwm"/>
                     <constraint firstItem="hBP-td-DB9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="23" id="92o-BM-AuH"/>
-                    <constraint firstItem="eaD-Mq-lz1" firstAttribute="top" secondItem="Etm-xQ-u1i" secondAttribute="bottom" constant="20" id="A4w-P5-Tg2"/>
+                    <constraint firstItem="eaD-Mq-lz1" firstAttribute="top" secondItem="Etm-xQ-u1i" secondAttribute="bottom" constant="91" id="A4w-P5-Tg2"/>
                     <constraint firstItem="Phx-Zc-hwE" firstAttribute="top" secondItem="VRe-dx-RcW" secondAttribute="bottom" constant="3" id="Bzq-XV-Qbz"/>
                     <constraint firstAttribute="trailing" secondItem="eaD-Mq-lz1" secondAttribute="trailing" constant="20" id="Iaj-Ry-Lix"/>
                     <constraint firstAttribute="trailing" secondItem="Ptr-yV-u4V" secondAttribute="trailing" constant="16" id="NfZ-m6-FOa"/>
                     <constraint firstAttribute="bottom" secondItem="0T5-t9-NG3" secondAttribute="bottom" constant="20" id="Pii-69-FzA"/>
                     <constraint firstItem="Ptr-yV-u4V" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="179" id="RN7-B9-dQN"/>
                     <constraint firstItem="VRe-dx-RcW" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Urj-W9-dtY"/>
-                    <constraint firstItem="0T5-t9-NG3" firstAttribute="top" secondItem="Etm-xQ-u1i" secondAttribute="bottom" constant="20" id="WGp-XS-7rj"/>
+                    <constraint firstItem="0T5-t9-NG3" firstAttribute="top" secondItem="Etm-xQ-u1i" secondAttribute="bottom" constant="91" id="WGp-XS-7rj"/>
                     <constraint firstItem="Phx-Zc-hwE" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="YiB-YS-Zxe"/>
                     <constraint firstAttribute="trailing" secondItem="VRe-dx-RcW" secondAttribute="trailing" constant="20" id="bJg-OR-Bwr"/>
                     <constraint firstItem="Ptr-yV-u4V" firstAttribute="top" secondItem="Phx-Zc-hwE" secondAttribute="bottom" constant="10" id="eLb-m0-vXN"/>
                     <constraint firstAttribute="bottom" secondItem="eaD-Mq-lz1" secondAttribute="bottom" constant="20" id="gPB-gB-eMK"/>
                     <constraint firstAttribute="trailing" secondItem="Etm-xQ-u1i" secondAttribute="trailing" constant="20" id="hR2-xP-h4C"/>
                     <constraint firstItem="VRe-dx-RcW" firstAttribute="leading" secondItem="hBP-td-DB9" secondAttribute="trailing" constant="10" id="lgE-Qo-XE8"/>
-                    <constraint firstItem="Etm-xQ-u1i" firstAttribute="top" secondItem="i6y-9H-c1y" secondAttribute="bottom" constant="3" id="lpW-Pt-Fm1"/>
+                    <constraint firstItem="Etm-xQ-u1i" firstAttribute="top" secondItem="i6y-9H-c1y" secondAttribute="bottom" constant="5" id="lpW-Pt-Fm1"/>
                     <constraint firstAttribute="trailing" secondItem="i6y-9H-c1y" secondAttribute="trailing" constant="20" id="mlY-ZD-NtG"/>
                     <constraint firstItem="eaD-Mq-lz1" firstAttribute="leading" secondItem="0T5-t9-NG3" secondAttribute="trailing" constant="10" id="nAO-sO-utS"/>
                     <constraint firstItem="i6y-9H-c1y" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="z1P-hF-Edx"/>
