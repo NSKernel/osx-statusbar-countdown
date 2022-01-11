@@ -5,6 +5,8 @@
 //  Created by Jacqueline Alves on 02/10/19.
 //  Copyright © 2019 Ben Brooks. All rights reserved.
 //
+//  Copyright (c) 2021 NSKernel. All rights reserved.
+//
 
 import Cocoa
 

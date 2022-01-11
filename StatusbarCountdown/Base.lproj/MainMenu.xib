@@ -13,11 +13,19 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="StatusbarCountdown" customModuleProvider="target">
             <connections>
-                <outlet property="menuBarItem" destination="Bb0-bb-uo1" id="cuU-OF-EKX"/>
+                <outlet property="secondarySeperator" destination="TUA-y4-6OZ" id="ihm-EB-wBQ"/>
+                <outlet property="showInDaysMI" destination="kV3-dt-1eE" id="76N-uo-Fqv"/>
+                <outlet property="showInHoursMI" destination="rIx-Sm-FF4" id="Zg4-P0-oHQ"/>
+                <outlet property="showInMinutesMI" destination="XET-Uj-BaR" id="jIE-aM-eBR"/>
+                <outlet property="showInMonthsMI" destination="GkV-J2-isI" id="Jbp-1U-aGW"/>
+                <outlet property="showInProgressMI" destination="6mA-fl-oUt" id="6aN-ay-CAa"/>
+                <outlet property="showInSecondsMI" destination="1Oi-gB-MRA" id="bpT-xf-X8U"/>
+                <outlet property="showInTotalMI" destination="dnD-QF-GuI" id="Ybd-rj-0rr"/>
+                <outlet property="showInWeeksMI" destination="og3-5s-VTS" id="Ih4-e6-vjS"/>
                 <outlet property="showNameMI" destination="ymR-mC-yG2" id="VQh-IT-4lH"/>
                 <outlet property="showSecMI" destination="ccT-bc-F58" id="Zig-cN-qeZ"/>
                 <outlet property="showTimeMI" destination="ocs-ql-X0j" id="Mvg-qx-hLM"/>
-                <outlet property="statusMenu" destination="Bb0-bb-uo1" id="gYg-3Q-Umb"/>
+                <outlet property="statusMenu" destination="Bb0-bb-uo1" id="Duf-cP-Wf3"/>
                 <outlet property="zeroPadMI" destination="euL-WY-OeU" id="TxV-UI-lcK"/>
             </connections>
         </customObject>
@@ -30,14 +38,27 @@
                         <action selector="toggleShowNameWithSender:" target="Voe-Tx-rLC" id="eZS-dp-hK7"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Leading Zeros" state="on" id="euL-WY-OeU">
+                <menuItem isSeparatorItem="YES" id="W0a-71-nza"/>
+                <menuItem title="Show in Remaining Days" state="on" id="kV3-dt-1eE">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="toggleZeroPadWithSender:" target="Voe-Tx-rLC" id="Ipf-z6-8Z2"/>
+                        <action selector="showInDaysClick:" target="Voe-Tx-rLC" id="dfJ-5j-QQg"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="W0a-71-nza"/>
-                <menuItem title="Show Time" state="on" id="ocs-ql-X0j">
+                <menuItem title="Show in Remaining Total" id="dnD-QF-GuI">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInTotalClick:" target="Voe-Tx-rLC" id="tNz-lV-gHH"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Show in Progress" id="6mA-fl-oUt">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInProgressClick:" target="Voe-Tx-rLC" id="H5c-gJ-TGp"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="PAn-tr-ySt"/>
+                <menuItem title="Show Time" id="ocs-ql-X0j">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleShowTime:" target="Voe-Tx-rLC" id="3fj-zG-2Tb"/>
@@ -49,7 +70,37 @@
                         <action selector="toggleShowSecondsWithSender:" target="Voe-Tx-rLC" id="mUa-3b-0vF"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="PAn-tr-ySt"/>
+                <menuItem title="Leading Zeros" state="on" id="euL-WY-OeU">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleZeroPadWithSender:" target="Voe-Tx-rLC" id="Ipf-z6-8Z2"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Show in Weeks" id="og3-5s-VTS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInWeeksClick:" target="Voe-Tx-rLC" id="vVb-8g-9Ik"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Show in Hours" id="rIx-Sm-FF4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInHoursClick:" target="Voe-Tx-rLC" id="2Vk-xt-bAn"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Show in Minutes" id="XET-Uj-BaR">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInMinutesClick:" target="Voe-Tx-rLC" id="HWc-VG-EUy"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Show in Seconds" state="on" id="1Oi-gB-MRA">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInSecondsClick:" target="Voe-Tx-rLC" id="G7A-JN-5zd"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="TUA-y4-6OZ"/>
                 <menuItem title="Preferences" id="gEw-R4-QZI">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -66,5 +117,8 @@
             </items>
             <point key="canvasLocation" x="-488" y="38.5"/>
         </menu>
+        <menuItem title="Show in Months" id="GkV-J2-isI">
+            <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
     </objects>
 </document>
